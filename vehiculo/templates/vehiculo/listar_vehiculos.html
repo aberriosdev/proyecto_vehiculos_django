@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Listado de Vehículos{% endblock %}
+{% block content %}
+<h1>Listado de Vehículos</h1>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Categoría</th>
+            <th>Precio</th>
+            <th>Condición</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for vehiculo in vehiculos %}
+        <tr>
+            <td>{{ vehiculo.marca }}</td>
+            <td>{{ vehiculo.modelo }}</td>
+            <td>{{ vehiculo.categoria }}</td>
+            <td>${{ vehiculo.precio }}</td>
+            <td>
+                {% if vehiculo.precio <= 10000 %}
+                    Bajo
+                {% elif vehiculo.precio <= 30000 %}
+                    Medio
+                {% else %}
+                    Alto
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
